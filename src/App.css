@@ -1,0 +1,124 @@
+/* Chrome, Edge, and Safari */
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #212121;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+
+body {
+    background-color: #352F44;
+  }
+  
+  .my-btn {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      letter-spacing: 1px;
+      gap: 0.5rem;
+      padding: 8px 20px;
+      font-size: 18px;
+      font-weight: bold;
+      text-align: center;
+      text-decoration: none;
+      color: #5C5470;
+      background-color: #FAF0E6;
+      border: 2px solid #5C5470;
+      border-radius: 10px;
+      box-shadow: 3px 3px 0px #5C5470;
+      transition: all 0.3s ease;
+    }
+    
+    .my-btn:hover , .focus {
+      background-color: transparent;
+      color: #FAF0E6;
+      border: 2px solid #FAF0E6;
+      box-shadow: 3px 3px 0px #FAF0E6;
+    }
+    
+    .my-btn:active , .my-btn-alt:active {
+      background-color: #5C5470;
+      box-shadow: none;
+      transform: translateY(4px);
+    }
+    
+    
+    .white-gradient {
+      background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    }
+    
+
+    .social-icon {
+        position: relative;
+        border: none;
+        margin: 10px;
+        background-color: transparent;
+      }
+      
+      .social-icon a {
+        width: 60px;
+        height: 60px;
+        border-radius: 15px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        border-right: 1px solid rgba(255, 255, 255, 0.2);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        box-shadow: 0 5px 45px rgba(0, 0, 0, 0.3);
+        backdrop-filter: blur(2px);
+        transition: 0.5s;
+        overflow: hidden;
+        background-color: rgba(255, 255, 255, 0.1);
+      }
+      
+      .social-icon a:hover {
+        transform: translateY(-20px);
+      }
+      
+      .social-icon a::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 50px;
+        height: 100%;
+        background-color: rgba(255, 255, 255, 0.5);
+        transform: skewX(45deg) translateX(150px);
+        transition: 0.5s ease;
+      }
+      
+      .social-icon a:hover::before {
+        transform: skewX(45deg) translateX(-150px);
+      }
+      
+
+
+  
+  /* 
+  COLORS : 
+  
+  primary : #352F44
+  secondary : #5C5470
+  text :  #B9B4C7
+  highlights : #FAF0E6
+
+
+  Social Icons
+  linkedin blue : #0072b1
+
+  
+  */
