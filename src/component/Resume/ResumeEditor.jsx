@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { FormInput } from "./FormInput";
 import { Button } from "../UI/Button";
+import { TiDeleteOutline } from "react-icons/ti";
+import { VscAdd } from "react-icons/vsc";
 
 export const ResumeEditor = (props) => {
   const sections = props.sections;
@@ -49,7 +51,7 @@ export const ResumeEditor = (props) => {
 
   // Personal Info form
   const personalInfoBody = (
-    <div className="flex flex-col gap-10 mt-10">
+    <div className="flex flex-col gap-10 mt-10 ">
       <div className="flex flex-wrap gap-10">
         <FormInput
           className={"grow"}
@@ -463,7 +465,7 @@ export const ResumeEditor = (props) => {
           ...prev,
           [sections.personalInfo]: {
             ...prev[sections.personalInfo],
-            details: tempDetail,
+            detail: tempDetail,
             sectionTitle,
           },
         }));
@@ -478,7 +480,7 @@ export const ResumeEditor = (props) => {
           ...prev,
           [sections.aboutme]: {
             ...prev[sections.aboutme],
-            details: tempDetail,
+            detail: tempDetail,
             sectionTitle,
           },
         }));
@@ -533,7 +535,7 @@ export const ResumeEditor = (props) => {
         break;
       }
 
-      case sections.eduction: {
+      case sections.education: {
         const tempDetail = {
           coursename: values.coursename,
           cgpa: values.cgpa,
@@ -634,118 +636,118 @@ export const ResumeEditor = (props) => {
     setActiveData(tempActiveData);
     setSectionTitle(sections[activeSectionKey]);
     setActiveDetailIndex(0);
-    
+
     // Logic for updating values of user input while switching sections
     setValues({
-      name: tempActiveData?.details?.name || "",
-      address: tempActiveData?.details?.address || "",
-      role: tempActiveData?.details?.role || "",
-      linkedin: tempActiveData?.details?.linkedin || "",
-      github: tempActiveData?.details?.github || "",
-      email: tempActiveData?.details?.email || "",
-      phone: tempActiveData?.details?.phone || "",
-      aboutme: typeof tempActiveData?.details !== "object" ? tempActiveData.details : "",
+      name: tempActiveData?.detail?.name || "",
+      address: tempActiveData?.detail?.address || "",
+      role: tempActiveData?.detail?.role || "",
+      linkedin: tempActiveData?.detail?.linkedin || "",
+      github: tempActiveData?.detail?.github || "",
+      email: tempActiveData?.detail?.email || "",
+      phone: tempActiveData?.detail?.phone || "",
+      
+      aboutme: typeof tempActiveData?.detail !== "object"? tempActiveData.detail :  "",
       
       tech: tempActiveData?.details
-      ? tempActiveData.details[0]?.tech || ""
-      : "",
+        ? tempActiveData.details[0]?.tech || ""
+        : "",
       projectlink: tempActiveData?.details
-      ? tempActiveData.details[0]?.projectlink || ""
-      : "",
+        ? tempActiveData.details[0]?.projectlink || ""
+        : "",
       projectgithub: tempActiveData?.details
-      ? tempActiveData.details[0]?.projectgithub || ""
-      : "",
+        ? tempActiveData.details[0]?.projectgithub || ""
+        : "",
       company: tempActiveData?.details
-      ? tempActiveData.details[0]?.company || ""
-      : "",
+        ? tempActiveData.details[0]?.company || ""
+        : "",
       college: tempActiveData?.details
-      ? tempActiveData.details[0]?.college || ""
-      : "",
+        ? tempActiveData.details[0]?.college || ""
+        : "",
       location: tempActiveData?.details
-      ? tempActiveData.details[0]?.location || ""
-      : "",
+        ? tempActiveData.details[0]?.location || ""
+        : "",
       startdate: tempActiveData?.details
-      ? tempActiveData.details[0]?.startdate || ""
-      : "",
+        ? tempActiveData.details[0]?.startdate || ""
+        : "",
       enddate: tempActiveData?.details
-      ? tempActiveData.details[0]?.enddate || ""
-      : "",
+        ? tempActiveData.details[0]?.enddate || ""
+        : "",
+      jobtitle: tempActiveData?.details
+        ? tempActiveData.details[0]?.jobtitle || ""
+        : tempActiveData?.details?.jobtitle || "",
+      projecttitle: tempActiveData?.details
+        ? tempActiveData.details[0]?.projecttitle || ""
+        : tempActiveData?.details?.projecttitle || "",
+
+      coursename: tempActiveData?.details
+        ? tempActiveData.details[0]?.coursename || ""
+        : tempActiveData?.details?.coursename || "",
+      cgpa: tempActiveData?.details
+        ? tempActiveData.details[0]?.cgpa || ""
+        : tempActiveData?.details?.cgpa || "",
+
       points: tempActiveData?.details
-      ? tempActiveData.details[0]?.points
+        ? tempActiveData.details[0]?.points
           ? [...tempActiveData.details[0]?.points]
           : ""
-          : tempActiveData?.points
-          ? [...tempActiveData.points]
-          : "",
-      jobtitle: tempActiveData?.details
-      ? tempActiveData.details[0]?.jobtitle || ""
-      : tempActiveData?.details?.jobtitle || "",
-      projecttitle: tempActiveData?.details
-      ? tempActiveData.details[0]?.projecttitle || ""
-      : tempActiveData?.details?.projecttitle || "",
-      
-      coursename: tempActiveData?.details
-      ? tempActiveData.details[0]?.coursename || ""
-      : "",
+        : tempActiveData?.points
+        ? [...tempActiveData.points]
+        : "",
+    });
+  }, [activeSectionKey]);
 
-      // coursename: tempActiveData?.details
-      // ? tempActiveData.details[0]?.coursename || ""
-      // : tempActiveData?.details?.coursename || "",
-      
+  // ****************************************************************************************************************
+  // Logic to display multiple  projects / experiences / education
+  // ****************************************************************************************************************
+  useEffect(() => {
+    setActiveData(data[sections[activeSectionKey]]);
+  }, [data]);
 
-        });
-      } , [activeSectionKey]);
-      
-      // ****************************************************************************************************************
-      // Logic to display multiple  projects / experiences / education   
-      // ****************************************************************************************************************
-      useEffect(() => {
-        setActiveData(data[sections[activeSectionKey]]);
-      } , [data]);
-      
-      
-      // ****************************************************************************************************************
-      // Logic to update active information in current detail section of multiple projects / experiences / education 
-      // ****************************************************************************************************************
-      useEffect(() => {
-        const details = activeData?.details;
-        if(!details){
-          return;
-        }
+  // ****************************************************************************************************************
+  // Logic to update active information in current detail section of multiple projects / experiences / education
+  // ****************************************************************************************************************
+  useEffect(() => {
+    const details = activeData?.details;
+    if (!details) {
+      return;
+    }
 
-        const tempActiveData = data[sections[activeSectionKey]];
-        setValues({
-          tech: tempActiveData.details[activeDetailIndex]?.tech || "",
-          projectlink: tempActiveData.details[activeDetailIndex]?.projectlink || "",
-          comapny: tempActiveData.details[activeDetailIndex]?.company || "",
-          location: tempActiveData.details[activeDetailIndex]?.location || "",
-          startDate: tempActiveData.details[activeDetailIndex]?.startDate || "",
-          endDate: tempActiveData.details[activeDetailIndex]?.endDate || "",
-          points: tempActiveData.details[activeDetailIndex]?.points || "",
-          jobtitle: tempActiveData.details[activeDetailIndex]?.jobtitle || "",
-          projecttitle: tempActiveData.details[activeDetailIndex]?.projecttitle || "",
-          role: tempActiveData.details[activeDetailIndex]?.role || "",
-          coursename: tempActiveData.details[activeDetailIndex]?.coursename || "",
-          linkedin: tempActiveData.details[activeDetailIndex]?.linkedin || "",
-          github: tempActiveData.details[activeDetailIndex]?.github || "",
-          college: tempActiveData.details[activeDetailIndex]?.college || "",
-        });
-      } , [activeDetailIndex]);
+    const tempActiveData = data[sections[activeSectionKey]];
+    setValues({
+      tech: tempActiveData.details[activeDetailIndex]?.tech || "",
+      projectlink: tempActiveData.details[activeDetailIndex]?.projectlink || "",
+      projectgithub: tempActiveData.details[activeDetailIndex]?.projectgithub || "",
+      company: tempActiveData.details[activeDetailIndex]?.company || "",
+      location: tempActiveData.details[activeDetailIndex]?.location || "",
+      startdate: tempActiveData.details[activeDetailIndex]?.startdate || "",
+      enddate: tempActiveData.details[activeDetailIndex]?.enddate || "",
+      points: tempActiveData.details[activeDetailIndex]?.points || "",
+      jobtitle: tempActiveData.details[activeDetailIndex]?.jobtitle || "",
+      projecttitle:
+        tempActiveData.details[activeDetailIndex]?.projecttitle || "",
+      role: tempActiveData.details[activeDetailIndex]?.role || "",
+      coursename: tempActiveData.details[activeDetailIndex]?.coursename || "",
+      cgpa: tempActiveData.details[activeDetailIndex]?.cgpa || "",
+      linkedin: tempActiveData.details[activeDetailIndex]?.linkedin || "",
+      github: tempActiveData.details[activeDetailIndex]?.github || "",
+      college: tempActiveData.details[activeDetailIndex]?.college || "",
+    });
+  }, [activeDetailIndex]);
 
-
-
-      // ****************************************************************************************************************
-      
-      return (
-    <div className="bg-formBg p-16 mt-10 rounded-3xl">
+  // ****************************************************************************************************************
+  return (
+    <div className={`bg-formBg p-16 mt-10 rounded-3xl transition-all duration-1000 ${props.className}`}>
       {/* list of all the sections showed as a header */}
-      <ul className="flex p-4 rounded-3xl shadow-input border-solid border-2 border-white">
+      <ul className="flex p-4 gap-2 bg-text_50 rounded-3xl shadow-input border-solid border-2 border-white">
         {Object.keys(sections)?.map((key) => (
           <li
             key={key}
             onClick={() => setActiveSectionKey(key)}
-            className={`cursor-pointer px-6 py-2 rounded-3xl tracking-wide select-none text-lg transition-all duration-200 ${
-              activeSectionKey === key ? "bg-secondary text-highlight" : ""
+            className={`cursor-pointer px-6 py-2 rounded-3xl border-2 tracking-wide select-none text-lg transition-all duration-200 ${
+              activeSectionKey === key
+                ? "bg-primary text-highlight border-highlight"
+                : " text-primary border-primary"
             }`}
           >
             {sections[key]}
@@ -763,14 +765,45 @@ export const ResumeEditor = (props) => {
         />
       </div>
 
-      
+      <div className="pt-5 flex items-center gap-5 select-none transition-all duration-1000">
+        {activeData?.details
+          ? activeData.details?.map((item, index) => (
+              <div
+                className={`px-4 py-2 flex items-center gap-0.5 text-text rounded-3xl ransition-all duration-150 ${
+                  activeDetailIndex === index ? "bg-primary" : "bg-secondary"
+                }`}
+                key={sections[activeSectionKey]+index}
+                onClick={() => setActiveDetailIndex(index)}
+              >
+                <p className="">
+                  {sections[activeSectionKey]} {index + 1}
+                </p>
+                <TiDeleteOutline
+                className="text-3xl cursor-pointer text-highlight"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    deleteDetailHandler(index);
+                  }}
+                />
+              </div>
+            ))
+          : ""}
 
+
+          {activeData?.details && activeData?.details?.length > 0 ? (
+            <div>
+              <VscAdd className="text-lg text-primary cursor-pointer" onClick={addDetailHandler}/>
+            </div>
+          ) : ""}
+
+      </div>
       {generateFormBody()}
 
       <Button
         className={
           "mt-10 text-highlight bg-secondary border-primary hover:bg-primary hover:border-secondary "
         }
+
         onClick={saveDataHandler}
       >
         Save

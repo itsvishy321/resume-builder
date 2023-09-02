@@ -1,7 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Card } from "../UI/Card";
-import { ResumeTemplate } from "./ResumeTemplate";
+import { ResumePreview} from "./ResumePreview";
 import { ResumeEditor } from "./ResumeEditor";
+import ReactToPrint from "react-to-print";
+import {TbDownload} from "react-icons/tb";
+import { Button } from "../UI/Button";
 
 export const ResumeDashboard = () => {
   // stores current reference of resume
@@ -21,12 +24,12 @@ export const ResumeDashboard = () => {
     [sections.personalInfo]: {
       id: sections.personalInfo,
       sectionTitle: sections.personalInfo,
-      details: [], // this object will store extra user details eg: phone number email ids etc.
+      detail: [], // this object will store extra user details eg: phone number email ids etc.
     },
     [sections.aboutme]: {
       id: sections.aboutme,
       sectionTitle: sections.aboutme,
-      details: [], // this object will store extra user details eg:
+      detail: [], // this object will store extra user details eg:
     },
     [sections.experience]: {
       id: sections.experience,
@@ -46,25 +49,41 @@ export const ResumeDashboard = () => {
     [sections.achievement]: {
       id: sections.achievement,
       sectionTitle: sections.achievement,
-      details: [], // this object will store extra user details eg:
+      points: [], // this object will store extra user details eg:
     },
   });
 
-  
   // when resume data changes sections information will be updated
   useEffect(() => {}, [resumeData]);
-  console.log(resumeData);
+  // console.log(resumeData);
 
   return (
     <Card>
-      <div className="flex flex-col items-center ">
+      <div className="flex flex-col items-center relative">
         <h1 className="text-text text-3xl tracking-wider mt-10">
           Resume Dashboard
         </h1>
+        
+        <ReactToPrint
+            trigger={() => {
+              return (
+                <Button className={"absolute right-32 top-14"}>
+                  Download <TbDownload />
+                </Button>
+              );
+            }}
+            //store the change when button clicked
+            content={() => resumeRef.current}
+          />
 
-        <ResumeEditor sections={sections} data={resumeData} setData={setResumeData}/>
+        <ResumeEditor
+          className={"relative"}
+          sections={sections}
+          data={resumeData}
+          setData={setResumeData}
+        />
 
-        <ResumeTemplate ref={resumeRef} sections={sections} data={resumeData} />
+        <ResumePreview ref={resumeRef} sections={sections} data={resumeData} />
       </div>
     </Card>
   );

@@ -14,6 +14,7 @@ export default {
         primary: "#352F44",
         secondary: "#5C5470",
         text: "#B9B4C7",
+        text_50: "#c7c3d2",
         highlight: "#FAF0E6",
         inputBg: "#e8e8e8",
         formBg: "#e8e8e8",

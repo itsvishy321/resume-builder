@@ -1,14 +1,22 @@
-import React from 'react'
+import React from "react";
+import { useState } from "react";
+import { Button } from "./UI/Button";
+import { Card } from "./UI/Card";
 
 export const Templates = () => {
+  const [index, setIndex] = useState(0);
+  
+  
+
+  const selectTemplateHandler = (templateIndex) => {
+    setIndex(templateIndex);
+  }
+
   return (
-    <div className='text-center'>
-        <h1 className='text-3xl'>Templates</h1>
-        <h3>template1</h3>
-        <h3>template2</h3>
-        <h3>template3</h3>
-        <h3>template4</h3>
-        <h3>template5</h3>
-    </div>
-  )
-}
+    <Card>
+      <div className="flex gap-10 justify-center">
+        
+      </div>
+    </Card>
+  );
+};
