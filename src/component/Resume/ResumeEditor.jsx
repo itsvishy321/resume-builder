@@ -3,10 +3,12 @@ import { FormInput } from "./FormInput";
 import { Button } from "../UI/Button";
 import { TiDeleteOutline } from "react-icons/ti";
 import { VscAdd } from "react-icons/vsc";
+import { UserAuth } from "../Authentication/AuthContext";
 
 export const ResumeEditor = (props) => {
-  const sections = props.sections;
-  const data = props.data;
+  const {Sections , resumeData , setData} = UserAuth();
+  const sections = Sections;
+  const data = resumeData;
 
   // store the current active section key
   const [activeSectionKey, setActiveSectionKey] = useState(
@@ -461,7 +463,7 @@ export const ResumeEditor = (props) => {
           github: values.github,
         };
 
-        props.setData((prev) => ({
+        setData((prev) => ({
           ...prev,
           [sections.personalInfo]: {
             ...prev[sections.personalInfo],
@@ -476,7 +478,7 @@ export const ResumeEditor = (props) => {
       case sections.aboutme: {
         const tempDetail = values.aboutme;
 
-        props.setData((prev) => ({
+        setData((prev) => ({
           ...prev,
           [sections.aboutme]: {
             ...prev[sections.aboutme],
@@ -500,7 +502,7 @@ export const ResumeEditor = (props) => {
         const tempDetails = [...data[sections.experience]?.details];
         tempDetails[activeDetailIndex] = tempDetail;
 
-        props.setData((prev) => ({
+        setData((prev) => ({
           ...prev,
           [sections.experience]: {
             ...prev[sections.experience],
@@ -523,7 +525,7 @@ export const ResumeEditor = (props) => {
         const tempDetails = [...data[sections.project]?.details];
         tempDetails[activeDetailIndex] = tempDetail;
 
-        props.setData((prev) => ({
+        setData((prev) => ({
           ...prev,
           [sections.project]: {
             ...prev[sections.project],
@@ -546,7 +548,7 @@ export const ResumeEditor = (props) => {
         const tempDetails = [...data[sections.education]?.details];
         tempDetails[activeDetailIndex] = tempDetail;
 
-        props.setData((prev) => ({
+        setData((prev) => ({
           ...prev,
           [sections.education]: {
             ...prev[sections.education],
@@ -561,7 +563,7 @@ export const ResumeEditor = (props) => {
       case sections.achievement: {
         const tempPoints = values.points;
 
-        props.setData((prev) => ({
+        setData((prev) => ({
           ...prev,
           [sections.achievement]: {
             ...prev[sections.achievement],
@@ -596,7 +598,7 @@ export const ResumeEditor = (props) => {
 
     details?.push({});
 
-    props.setData((prev) => ({
+    setData((prev) => ({
       ...prev,
       [sections[activeSectionKey]]: {
         ...data[sections[activeSectionKey]],
@@ -617,7 +619,7 @@ export const ResumeEditor = (props) => {
     }
 
     details.splice(index, 1);
-    props.setData((prev) => ({
+    setData((prev) => ({
       ...prev,
       [sections[activeSectionKey]]: {
         ...data[sections[activeSectionKey]],

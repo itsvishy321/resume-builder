@@ -6,6 +6,7 @@ export default {
       fontFamily: {
         primary: "Lexend Deca",
         secondary: "Caveat",
+        template1: "Montserrat",
       },
       boxShadow: {
         input: "6px 6px 12px #ffffff, -6px -6px 12px #c5c5c5",
@@ -47,6 +48,16 @@ export default {
 
       '2xl': '1536px',
       // => @media (min-width: 1536px) { ... }
+    },
+    letterSpacing: {
+      tightest: '-.075em',
+      tighter: '-.05em',
+      tight: '-.025em',
+      normal: '0',
+      wide: '.025em',
+      wider: '.05em',
+      widest: '.1em',
+      widest: '.35em',
     },
   },
   plugins: [],
