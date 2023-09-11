@@ -746,10 +746,10 @@ export const ResumeEditor = (props) => {
           <li
             key={key}
             onClick={() => setActiveSectionKey(key)}
-            className={`cursor-pointer px-6 py-2 rounded-3xl border-2 tracking-wide select-none text-lg transition-all duration-200 ${
+            className={`cursor-pointer px-4 py-2 rounded-3xl border-2 tracking-wide select-none text-md transition-all duration-200 ${
               activeSectionKey === key
                 ? "bg-primary text-highlight border-highlight"
-                : " text-primary border-primary"
+                : " text-primary border-primary text-center"
             }`}
           >
             {sections[key]}

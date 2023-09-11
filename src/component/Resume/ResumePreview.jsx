@@ -24,7 +24,7 @@ export const ResumePreview = forwardRef((props , ref) => {
   }
 
   return (
-    <div ref={ref} className='bg-formBg p-4 mt-5'>
+    <div ref={ref} className='bg-white p-4'>
       <div ref={containerRef} className=' max-w-3xl mx-auto w-screen'>
         {getResumeTemplate()}
       </div>

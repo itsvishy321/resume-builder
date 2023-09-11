@@ -32,7 +32,7 @@ export const ResumeDashboard = () => {
             content={() => resumeRef.current}
           />
 
-        <ResumeEditor className={"relative"}/>
+        <ResumeEditor className={"relative mb-5"}/>
 
         <ResumePreview ref={resumeRef} templateIndex={templateIndex} />
       </div>
