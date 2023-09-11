@@ -46,7 +46,7 @@ export const Header = () => {
 
       { isOpen? <Backdrop/> : <span/>}
       
-      <div className={` z-40 flex lg:items-center gap-6 lg:gap-12 transition-all duration-300 ease-in-out ${isOpen ? "flex-col gap-14 items-start absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 " : "hidden lg:flex"}`}>
+      <div className={` z-40 flex lg:items-center gap-6 lg:gap-12 transition-all duration-300 ease-in-out ${isOpen ? "flex-col gap-20 items-start absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 " : "hidden lg:flex"}`}>
         <div className="group">
           <NavLink
             onClick={handleClick}
