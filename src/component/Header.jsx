@@ -15,6 +15,7 @@ export const Header = () => {
   const handleSignOut = async () => {
     try {
       await logOut();
+      handleClick();
     } catch (error) {
       console.log(error);
     }
