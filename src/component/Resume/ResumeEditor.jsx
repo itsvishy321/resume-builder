@@ -748,9 +748,13 @@ export const ResumeEditor = (props) => {
       college: tempActiveData.details[activeDetailIndex]?.college || "",
     });
   }, [activeDetailIndex]);
-
-  const [slides, setSlides] = React.useState(3);
-
+  
+  var beginSlide = 1;
+  const windowWidth = window.innerWidth;
+  if(windowWidth > 640 ) beginSlide = 3
+  else beginSlide = 1
+  const [slides, setSlides] = useState(beginSlide);
+  
   window.addEventListener('resize', () => {
     const windowWidth = window.innerWidth;
     if (windowWidth > 640) {
