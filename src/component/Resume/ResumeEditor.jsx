@@ -196,8 +196,8 @@ export const ResumeEditor = (props) => {
           className={"grow"}
           label={"Company / Organization Name"}
           value={values.company}
-          placeholder={"Enter phone number"}
-          type={"tel"}
+          placeholder={"Enter company"}
+          type={"text"}
           onChange={(e) =>
             setValues((prev) => ({
               ...prev,
@@ -749,7 +749,7 @@ export const ResumeEditor = (props) => {
     });
   }, [activeDetailIndex]);
 
-  const [slides, setSlides] = React.useState(1);
+  const [slides, setSlides] = React.useState(3);
 
   window.addEventListener('resize', () => {
     const windowWidth = window.innerWidth;
