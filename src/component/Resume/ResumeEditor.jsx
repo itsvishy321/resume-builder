@@ -2,11 +2,21 @@ import React, { useEffect, useState } from "react";
 import { FormInput } from "./FormInput";
 import { Button } from "../UI/Button";
 import { TiDeleteOutline } from "react-icons/ti";
+import { GrFormNextLink,GrFormPreviousLink } from "react-icons/gr";
 import { VscAdd } from "react-icons/vsc";
 import { UserAuth } from "../Authentication/AuthContext";
+import { Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { useSwiper } from "swiper/react";
+// Import Swiper styles
+
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/scrollbar';
 
 export const ResumeEditor = (props) => {
-  const {Sections , resumeData , setData} = UserAuth();
+  const { Sections, resumeData, setData } = UserAuth();
   const sections = Sections;
   const data = resumeData;
 
@@ -54,7 +64,7 @@ export const ResumeEditor = (props) => {
   // Personal Info form
   const personalInfoBody = (
     <div className="flex flex-col gap-10 mt-10 ">
-      <div className="flex flex-wrap gap-10">
+      <div className="flex flex-col md:flex-row gap-10">
         <FormInput
           className={"grow"}
           label={"Full Name"}
@@ -91,7 +101,7 @@ export const ResumeEditor = (props) => {
           }))
         }
       />
-      <div className="flex flex-wrap gap-10">
+      <div className="flex flex-col md:flex-row gap-10">
         <FormInput
           className={"grow"}
           label={"Email"}
@@ -118,7 +128,7 @@ export const ResumeEditor = (props) => {
           }
         />
       </div>
-      <div className="flex flex-wrap gap-10">
+      <div className="flex flex-col md:flex-row gap-10">
         <FormInput
           className={"grow"}
           label={"LinkedIn"}
@@ -169,7 +179,7 @@ export const ResumeEditor = (props) => {
   // Experience Form
   const experienceBody = (
     <div className="flex flex-col gap-10 mt-10">
-      <div className="flex flex-wrap gap-10">
+      <div className="flex flex-col md:flex-row gap-10">
         <FormInput
           className={"grow"}
           label={"Job Title"}
@@ -196,7 +206,7 @@ export const ResumeEditor = (props) => {
           }
         />
       </div>
-      <div className="flex flex-wrap gap-10">
+      <div className="flex flex-col md:flex-row gap-10">
         <FormInput
           className={"grow"}
           type={"date"}
@@ -280,7 +290,7 @@ export const ResumeEditor = (props) => {
           }))
         }
       />
-      <div className="flex flex-wrap gap-10">
+      <div className="flex flex-col md:flex-row gap-10">
         <FormInput
           className={"grow"}
           label={"Github Link"}
@@ -330,7 +340,7 @@ export const ResumeEditor = (props) => {
   // Education Form
   const educationBody = (
     <div className="flex flex-col gap-10 mt-10">
-      <div className="flex flex-wrap gap-10">
+      <div className="flex flex-col md:flex-row gap-10">
         <FormInput
           className={"grow"}
           label={"Course Name"}
@@ -369,7 +379,7 @@ export const ResumeEditor = (props) => {
         }
       />
 
-      <div className="flex flex-wrap gap-10">
+      <div className="flex flex-col md:flex-row gap-10">
         <FormInput
           className={"grow"}
           type={"date"}
@@ -648,9 +658,10 @@ export const ResumeEditor = (props) => {
       github: tempActiveData?.detail?.github || "",
       email: tempActiveData?.detail?.email || "",
       phone: tempActiveData?.detail?.phone || "",
-      
-      aboutme: typeof tempActiveData?.detail !== "object"? tempActiveData.detail :  "",
-      
+
+      aboutme:
+        typeof tempActiveData?.detail !== "object" ? tempActiveData.detail : "",
+
       tech: tempActiveData?.details
         ? tempActiveData.details[0]?.tech || ""
         : "",
@@ -719,7 +730,8 @@ export const ResumeEditor = (props) => {
     setValues({
       tech: tempActiveData.details[activeDetailIndex]?.tech || "",
       projectlink: tempActiveData.details[activeDetailIndex]?.projectlink || "",
-      projectgithub: tempActiveData.details[activeDetailIndex]?.projectgithub || "",
+      projectgithub:
+        tempActiveData.details[activeDetailIndex]?.projectgithub || "",
       company: tempActiveData.details[activeDetailIndex]?.company || "",
       location: tempActiveData.details[activeDetailIndex]?.location || "",
       startdate: tempActiveData.details[activeDetailIndex]?.startdate || "",
@@ -737,25 +749,59 @@ export const ResumeEditor = (props) => {
     });
   }, [activeDetailIndex]);
 
+  const [slides, setSlides] = React.useState(1);
+
+  window.addEventListener('resize', () => {
+    const windowWidth = window.innerWidth;
+    if (windowWidth > 640) {
+      setSlides(3);
+    } else {
+      setSlides(1);
+    }
+  });
+
+
   // ****************************************************************************************************************
   return (
-    <div className={`bg-formBg p-16 mt-10 rounded-3xl transition-all duration-1000 ${props.className}`}>
+    <div
+      className={`bg-formBg px-6 py-8 md:px-16 md:py-16 mt-10 rounded-3xl transition-all duration-1000 ${props.className}`}
+    >
       {/* list of all the sections showed as a header */}
-      <ul className="flex p-4 gap-2 bg-text_50 rounded-3xl shadow-input border-solid border-2 border-white">
+      <Swiper
+      modules={[Navigation, A11y]}
+      spaceBetween={50}
+      slidesPerView={slides}
+      navigation={{
+        nextEl: ".next-slide",
+        prevEl: ".prev-slide",
+        clickable: true,
+      }}
+        
+        className="p-4  bg-text_50 rounded-3xl shadow-input border-solid border-2 border-white"
+      >
         {Object.keys(sections)?.map((key) => (
-          <li
+          <SwiperSlide
             key={key}
             onClick={() => setActiveSectionKey(key)}
-            className={`cursor-pointer px-4 py-2 rounded-3xl border-2 tracking-wide select-none text-md transition-all duration-200 ${
+            className={`truncate cursor-pointer px-4 py-2 rounded-3xl border-2 tracking-wide select-none text-md transition-all duration-200 ${
               activeSectionKey === key
                 ? "bg-primary text-highlight border-highlight"
                 : " text-primary border-primary text-center"
             }`}
           >
             {sections[key]}
-          </li>
+          </SwiperSlide>
         ))}
-      </ul>
+      </Swiper>
+
+        <div className="text-3xl flex gap-10 justify-center mt-5">
+          <div className="prev-slide  border-solid border-2 border-primary rounded-full hover:bg-highlight " >
+            <GrFormPreviousLink className="text-highlight"/>
+          </div>
+          <div className="next-slide border-solid border-2 border-primary rounded-full hover:bg-highlight">
+            <GrFormNextLink className="text-primary"/>
+          </div>
+        </div>
 
       <div className=" pt-10">
         <FormInput
@@ -774,14 +820,14 @@ export const ResumeEditor = (props) => {
                 className={`px-4 py-2 flex items-center gap-0.5 text-text rounded-3xl ransition-all duration-150 ${
                   activeDetailIndex === index ? "bg-primary" : "bg-secondary"
                 }`}
-                key={sections[activeSectionKey]+index}
+                key={sections[activeSectionKey] + index}
                 onClick={() => setActiveDetailIndex(index)}
               >
                 <p className="">
                   {sections[activeSectionKey]} {index + 1}
                 </p>
                 <TiDeleteOutline
-                className="text-3xl cursor-pointer text-highlight"
+                  className="text-3xl cursor-pointer text-highlight"
                   onClick={(e) => {
                     e.stopPropagation();
                     deleteDetailHandler(index);
@@ -791,13 +837,16 @@ export const ResumeEditor = (props) => {
             ))
           : ""}
 
-
-          {activeData?.details && activeData?.details?.length > 0 ? (
-            <div>
-              <VscAdd className="text-lg text-primary cursor-pointer" onClick={addDetailHandler}/>
-            </div>
-          ) : ""}
-
+        {activeData?.details && activeData?.details?.length > 0 ? (
+          <div>
+            <VscAdd
+              className="text-lg text-primary cursor-pointer"
+              onClick={addDetailHandler}
+            />
+          </div>
+        ) : (
+          ""
+        )}
       </div>
       {generateFormBody()}
 
@@ -805,7 +854,6 @@ export const ResumeEditor = (props) => {
         className={
           "mt-10 text-highlight bg-secondary border-primary hover:bg-primary hover:border-secondary "
         }
-
         onClick={saveDataHandler}
       >
         Save
