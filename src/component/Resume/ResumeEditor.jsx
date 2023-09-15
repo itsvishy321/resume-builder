@@ -146,7 +146,7 @@ export const ResumeEditor = (props) => {
           label={"Github"}
           value={values.github}
           placeholder={"Enter Github profile link"}
-          type={"tel"}
+          type={"text"}
           onChange={(e) =>
             setValues((prev) => ({
               ...prev,
