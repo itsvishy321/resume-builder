@@ -1,10 +1,10 @@
-# 📄ResumeXpert
+# <img src="./src/assets/logo.svg" width="48px"> Express Resume
 
-The `ResumeXpert` is a web application that allows you to  generate customized Resume in few minutes on your requirements. It also has ability to build, print, and download your resume in minutes. It is built using the React JavaScript library and offers a range of features to customize and generate resumes efficiently.
+The `Express Resume` is a web application that allows you to  generate customized Resume in few minutes on your requirements. It also has ability to build, print, and download your resume in minutes. It is built using the React JavaScript library and offers a range of features to customize and generate resumes efficiently.
 
 ## 📸Preview
 <p>
-  <img src="./src/assets/preview1-min.png" alt="img-preview"></img>
+  <img src="./src/assets/ExpressResume1.png" alt="img-preview"></img>
 </p>
 
 ## ✨Features
@@ -13,12 +13,12 @@ The `ResumeXpert` is a web application that allows you to  generate customized R
 - `Drag-and-Drop Functionality`: The application supports a drag-and-drop functionality, allowing users to easily move and reorder sections within the resume.
 - `Support Download Functionality`: Once the resume is complete, users can export it as a PDF or download it as a file.
 - `Editable Sections`: Users can easily edit and rearrange different sections of their resume, such as personal information, education, work experience, projects, and more.
-- `Responsiveness`: The ResumeXpert is designed to be responsive and mobile-friendly.
+- `Responsiveness`: The Express Resume is designed to be responsive and mobile-friendly.
 - `User Feedback/Queries`: Users can send their feedback, questions, or queries through a `contact form`, enabling direct communication with the administrators.
 
 ## 🤖Technologies Used
 
-The `ResumeXpert` is built using the following technologies:
+The `Express Resume` is built using the following technologies:
 
 - `React.js`: A JavaScript library for building user interfaces.
   Used React features likes states, contexts etc.
@@ -52,19 +52,19 @@ Before getting started, make sure you have the following prerequisites installed
 
 ## 💻Getting Started
 
-To run the ResumeXpert locally, follow these steps:
+To run the Express Resume locally, follow these steps:
 
 1. Clone the repository: `https://github.com/its-kumar-yash/react-resume-builder.git`
 2. Navigate to the project directory: `cd react-resume-builder`
 3. Install the dependencies: `npm install`
 4. Start the development server: `npm start`
-5. Open your web browser and visit `http://localhost:3000` to access the ResumeXpert.
+5. Open your web browser and visit `http://localhost:3000` to access the Express Resume.
 
 ## 📑Resources
 - [Firebase documentation](https://firebase.google.com/docs)
 
 ## ✨Credits
-`ResumeXpert` is developed and maintained by `Yash`. Acknowledgements and credits to jigar-sable for design inspiration.
+`Express Resume` is developed and maintained by `Yash`. Acknowledgements and credits to jigar-sable for design inspiration.
 
 ## 📧Contacts
 For any inquiries or feedback, please contact [Here](mailto:its.yash.kumar23@gmail.com).
