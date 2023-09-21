@@ -10,7 +10,7 @@ The `Express Resume` is a web application that allows you to  generate customize
 ## ✨Features
 
 - `Live Resume Preview`:  A live preview feature enables users to see their resume changes in real-time as they make modifications.
-- `Drag-and-Drop Functionality`: The application supports a drag-and-drop functionality, allowing users to easily move and reorder sections within the resume.
+  
 - `Support Download Functionality`: Once the resume is complete, users can export it as a PDF or download it as a file.
 - `Editable Sections`: Users can easily edit and rearrange different sections of their resume, such as personal information, education, work experience, projects, and more.
 - `Responsiveness`: The Express Resume is designed to be responsive and mobile-friendly.
