@@ -9,7 +9,7 @@ export default {
         template1: "Montserrat",
       },
       boxShadow: {
-        input: "6px 6px 12px #ffffff, -6px -6px 12px #c5c5c5",
+        input: "3px 3px 6px #ffffff, -3px -3px 6px #c5c5c5",
       },
       colors: {
         primary: "#352F44",
