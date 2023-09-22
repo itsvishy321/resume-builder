@@ -14,6 +14,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
+import { FormInputText } from "./FormInputText";
 
 export const ResumeEditor = (props) => {
   const { Sections, resumeData, setData } = UserAuth();
@@ -161,7 +162,7 @@ export const ResumeEditor = (props) => {
   // About Me Form
   const aboutMeBody = (
     <div className="mt-10">
-      <FormInput
+      <FormInputText
         className={"[&>input]:h-32 "}
         label={"About Me"}
         placeholder={"Describe yourself and your objectives"}
