@@ -39,15 +39,22 @@ export const Header = () => {
       <div className="flex items-center gap-2 sm:gap-4 ">
         <img src={logo} alt="Logo" className="w-12 sm:w-16" />
         <h1 className="text-lg sm:text-3xl  whitespace-pre">
-          <span className="font-secondary text-3xl sm:text-4xl">Expressive</span> Resume
+          <span className="font-secondary text-3xl sm:text-4xl">
+            Expressive
+          </span>{" "}
+          Resume
         </h1>
       </div>
 
-      
+      {isOpen ? <Backdrop /> : <span />}
 
-      { isOpen? <Backdrop/> : <span/>}
-      
-      <div className={` z-40 flex lg:items-center gap-6 lg:gap-12 transition-all duration-300 ease-in-out ${isOpen ? "flex-col gap-20 items-start absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 " : "hidden lg:flex"}`}>
+      <div
+        className={` z-40 flex lg:items-center gap-6 lg:gap-12 transition-all duration-300 ease-in-out ${
+          isOpen
+            ? "flex-col gap-20 items-start absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 "
+            : "hidden lg:flex"
+        }`}
+      >
         <div className="group">
           <NavLink
             onClick={handleClick}
@@ -86,9 +93,7 @@ export const Header = () => {
             Logout
           </Button>
         ) : (
-          <NavLink 
-            onClick={handleClick}
-            to={"/login"}>
+          <NavLink onClick={handleClick} to={"/login"}>
             <Button>
               <TbLogin className="text-2xl" /> Login
             </Button>
@@ -96,11 +101,8 @@ export const Header = () => {
         )}
       </div>
 
-      <div className="lg:hidden z-20">
-      <Hamburger
-              toggled={isOpen}
-              toggle={setOpen}
-            />
+      <div className="lg:hidden z-20 p-2 rounded-full hover:bg-secondary transition-all ease-out duration-150">
+        <Hamburger toggled={isOpen} toggle={setOpen} />
       </div>
     </div>
   );
