@@ -40,7 +40,7 @@ export const Header = () => {
         <img src={logo} alt="Logo" className="w-12 sm:w-16" />
         <h1 className="text-lg sm:text-3xl  whitespace-pre">
           <span className="font-secondary text-3xl sm:text-4xl">
-            Expressive
+            Express
           </span>{" "}
           Resume
         </h1>

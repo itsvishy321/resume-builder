@@ -7,6 +7,8 @@ import { useNavigate } from "react-router";
 
 import vectorImg from "../assets/Resumes/resume-vector.svg"
 import { GoogleButton } from "./UI/GoogleButton";
+import { reauthenticateWithRedirect } from "firebase/auth";
+
 
 export const Login = () => {
   const { googleSignIn, user } = UserAuth();
@@ -44,3 +46,6 @@ export const Login = () => {
     </Card>
   );
 };
+
+
+
